@@ -2,7 +2,7 @@
 
 <button class="btn btn-primary" @onclick="Print">@ButtonText</button>
 
-<div id="printable-content" style="display:none">
+<div id="printable-content" class="py-3" style="display:@(ShowPrintableContent ? "show" : "none")">
     @ChildContent
 </div>
 
@@ -13,6 +13,8 @@
     public string ButtonText { get; set; } = "Print";
     [Parameter]
     public string PageName { get; set; } = "Print";
+    [Parameter]
+    public bool ShowPrintableContent { get; set; }
 
     protected async Task Print()
     {
