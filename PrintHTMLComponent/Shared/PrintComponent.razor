@@ -1,0 +1,21 @@
+﻿@inject IJSRuntime js
+
+<button class="btn btn-primary" @onclick="Print">@ButtonText</button>
+
+<div id="printable-content" style="display:none">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public string ButtonText { get; set; } = "Print";
+    [Parameter]
+    public string PageName { get; set; } = "Print";
+
+    protected async Task Print()
+    {
+        await js.InvokeVoidAsync("print", PageName);
+    }
+}
